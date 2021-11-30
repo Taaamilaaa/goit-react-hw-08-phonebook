@@ -1,0 +1,20 @@
+.userMenu {
+  display: flex;
+  margin-right: auto;
+}
+.userMenuList {
+  list-style: none;
+  color: inherit;
+  display: flex;
+  /* justify-content: end; */
+}
+.userMenuItem {
+  font-style: normal;
+  line-height: 15px;
+  color: rgba(24, 23, 23, 0.829);
+  font-size: 30px;
+  font-weight: bold;
+  color: rgba(42, 36, 36, 0.87);
+  text-decoration: none;
+  margin-right: 25px;
+}

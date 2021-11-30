@@ -1,5 +1,5 @@
 import './App.css';
-import { Navigation } from 'components/Navigation/Navigation';
+import { AuthNavigation } from 'components/AuthNavigation/AuthNavigation';
 // import Form from 'components/Form/Form';
 // import ContactList from 'components/ContactList/ContactList';
 // import Filter from 'components/Filter/Filter';
@@ -15,26 +15,26 @@ import { LoginPage } from 'pages/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { PublicRoute } from 'routes/PublicRoute';
+import { HomePage } from 'pages/HomePage';
+import {UserMenu} from "components/UserMenu/UserMenu"
 
 const isAuth = false;
 
 const App = () => {
-  // const { data: contacts, isFetching } = useFetchContactsQuery();
-  // const [filter, setFilter] = useState('');
-
-  // const onFilterChange = value => {
-  //   setFilter(value);
-  // };
-  // console.log(contacts);
   return (
     <div className="container">
-      <header>
-        <Navigation />
+      <header className = "header">
+        <UserMenu/>
+        <AuthNavigation />
       </header>
       <main>
         <Routes>
-          <Route
+           <Route
             path="/"
+            element={<PrivateRoute component={HomePage} isAuth={isAuth} />}
+          />
+          <Route
+            path="/contacts"
             element={<PrivateRoute component={ContactsPage} isAuth={isAuth} />}
           />
           <Route
@@ -46,30 +46,7 @@ const App = () => {
             element={
               <PublicRoute component={RegisterPage} isAuth={isAuth} />}
           />
-        </Routes>
-        {/* <Container title="Phonebook">
-          <Container>
-            <Form />
-          </Container>
-
-          {contacts && (
-            <Container title="Contacts">
-              <Filter onFilterChange={onFilterChange} />
-              <ContactList filter={filter} />
-            </Container>
-          )}
-          {isFetching && (
-            <Loader
-              type="Watch"
-              className="loader"
-              color="rgba(114, 27, 27, 0.787)"
-              height={200}
-              width={200}
-            />
-          )}
-
-          <Toaster />
-        </Container> */}
+        </Routes>       
       </main>
     </div>
   );

@@ -1,13 +1,8 @@
-.navigation {
-  padding-bottom: 10px;
-  padding-top: 25px;
-  border-bottom: 1px solid rgb(77, 74, 74);
-}
 .list {
   list-style: none;
   color: inherit;
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: start; */
 }
 .link {
   font-style: normal;
@@ -17,4 +12,5 @@
   font-weight: bold;
   color: rgba(42, 36, 36, 0.87);
   text-decoration: none;
+  margin-left: 25px;
 }
