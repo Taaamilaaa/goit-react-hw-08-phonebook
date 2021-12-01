@@ -1,7 +1,7 @@
 import styles from './registerPage.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import authOperations from "redux/auth/auth-operations";
+
 
 
 export const RegisterPage = () => {
@@ -16,8 +16,7 @@ export const RegisterPage = () => {
 
   const handleSubmitUser = e => {
     e.preventDefault();
-    dispatch(authOperations.register({name, email, password}));
-    reset();
+    
   };
   const reset = () => {
     setName('');

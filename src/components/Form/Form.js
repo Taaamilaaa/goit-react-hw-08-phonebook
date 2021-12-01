@@ -6,7 +6,7 @@ import { notifySuccess, notifyWarning } from 'toaster/toaster';
 import {
   useFetchContactsQuery,
   useAddContactMutation,
-} from 'redux/contacts/contactsSlice';
+} from 'redux_/contacts/contactsSlice';
 
 const Form = () => {
   const { data: contacts } = useFetchContactsQuery();

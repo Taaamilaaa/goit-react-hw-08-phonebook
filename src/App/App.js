@@ -11,14 +11,14 @@ import { PrivateRoute } from 'routes/PrivateRoute';
 import { PublicRoute } from 'routes/PublicRoute';
 import { HomePage } from 'pages/HomePage';
 
-// import { getIsAuth } from 'redux/auth/authSelector';
-const isAuth = true
+
+
 const App = () => {
-  
+  const isAuth = false;
   return (
     <div className="container">
       <header className="header">
-        <Header />       
+        <Header />  
         
       </header>
       <main>

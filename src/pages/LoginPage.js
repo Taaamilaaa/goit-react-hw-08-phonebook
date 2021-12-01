@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 export const LoginPage = () => {
     const [userEmail, setEmail] = useState("");
     const [userPassword, setPassword] = useState("");
@@ -11,6 +12,7 @@ export const LoginPage = () => {
     };
     const onFormSubmit = e => {
         e.preventDefault();
+        // eslint-disable-next-line
         const user = {
             email: userEmail,
             password: userPassword,

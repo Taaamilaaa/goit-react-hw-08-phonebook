@@ -2,7 +2,7 @@ import Form from 'components/Form/Form';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
 import { Container } from 'components/Container/Container';
-import { useFetchContactsQuery } from 'redux/contacts/contactsSlice';
+import { useFetchContactsQuery } from 'redux_/contacts/contactsSlice';
 import { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
 import Loader from 'react-loader-spinner';

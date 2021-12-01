@@ -4,7 +4,7 @@ export const PublicRoute = ({ isAuth, component: Component}) => {
   return (
     <>
     
-      {isAuth ? <Navigate to="/" /> : <Component />}
+      {isAuth ? (<p>переключить на contact</p>) : <Component />}
     </>
   );
 };

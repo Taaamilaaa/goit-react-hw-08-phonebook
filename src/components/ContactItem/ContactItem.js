@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './contactItem.module.css';
 import PropTypes from 'prop-types';
 import { notifyDel } from 'toaster/toaster';
-import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
+import { useDeleteContactMutation } from 'redux_/contacts/contactsSlice';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 

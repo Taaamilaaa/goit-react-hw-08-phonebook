@@ -1,7 +1,7 @@
 import ContactItem from '../ContactItem/ContactItem';
 import styles from './contactList.module.css';
 import PropTypes from 'prop-types';
-import { useFetchContactsQuery } from 'redux/contacts/contactsSlice';
+import { useFetchContactsQuery } from 'redux_/contacts/contactsSlice';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
