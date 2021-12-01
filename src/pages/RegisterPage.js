@@ -1,15 +1,15 @@
 import styles from './registerPage.module.css';
 import { useState } from 'react';
-import { useSignupUserMutation } from 'redux/auth/authSlice';
+import { useDispatch } from 'react-redux';
+import {register} from "redux/auth/authOperation"
+
 
 export const RegisterPage = () => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [taken, setToken] = useState('');
-
-  const [signupUser] = useSignupUserMutation();
-
+  const dispatch = useDispatch();
+  
   const handleChangeName = e => setUserName(e.target.value);
   const handleChangeEmail = e => setUserEmail(e.target.value);
   const handleChangePassword = e => setUserPassword(e.target.value);
@@ -22,13 +22,7 @@ export const RegisterPage = () => {
       password: userPassword,
     };
 
-    signupUser(user).then(data => {
-      console.log(data);
-      const { data: userData } = data;
-
-      setToken(userData.token);
-    });
-
+    dispatch(register(user));
     reset();
   };
   const reset = () => {

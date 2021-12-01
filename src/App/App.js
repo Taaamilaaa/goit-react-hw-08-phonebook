@@ -1,5 +1,5 @@
 import './App.css';
-import { AuthNavigation } from 'components/AuthNavigation/AuthNavigation';
+
 // import Form from 'components/Form/Form';
 // import ContactList from 'components/ContactList/ContactList';
 // import Filter from 'components/Filter/Filter';
@@ -10,24 +10,28 @@ import { AuthNavigation } from 'components/AuthNavigation/AuthNavigation';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 // import Loader from 'react-loader-spinner';
 import { Routes, Route } from 'react-router';
+import {Header} from "components/Header/Header"
 import { ContactsPage } from 'pages/ContactsPage';
 import { LoginPage } from 'pages/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { PublicRoute } from 'routes/PublicRoute';
 import { HomePage } from 'pages/HomePage';
-import {UserMenu} from "components/UserMenu/UserMenu"
 
-const isAuth = false;
+import { getIsAuth } from 'redux/auth/authSelector';
 
 const App = () => {
+  const isAuth = getIsAuth;
   return (
     <div className="container">
-      <header className = "header">
-        <UserMenu/>
-        <AuthNavigation />
+      <header className="header">
+        <Header isAuth={ isAuth}/>
+        {/* {isAuth?<UserMenu isAuth={ isAuth}/>:<AuthNavigation />} */}
+        
+        
       </header>
       <main>
+      
         <Routes>
            <Route
             path="/"
