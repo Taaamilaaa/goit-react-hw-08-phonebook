@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { UserMenu } from 'components/UserMenu/UserMenu';
-import { AuthNavigation } from 'components/AuthNavigation/AuthNavigation';
+import { UserMenu } from './UserMenu/UserMenu';
+import { AuthNavigation } from './AuthNavigation/AuthNavigation';
 import styles from './header.module.css';
 
 export const Header = ({ isAuth }) => {
