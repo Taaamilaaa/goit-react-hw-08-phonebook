@@ -1,34 +1,28 @@
 import styles from './registerPage.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {register} from "redux/auth/authOperation"
+import authOperations from "redux/auth/auth-operations";
 
 
 export const RegisterPage = () => {
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   
-  const handleChangeName = e => setUserName(e.target.value);
-  const handleChangeEmail = e => setUserEmail(e.target.value);
-  const handleChangePassword = e => setUserPassword(e.target.value);
+  const handleChangeName = e => setName(e.target.value);
+  const handleChangeEmail = e => setEmail(e.target.value);
+  const handleChangePassword = e => setPassword(e.target.value);
 
   const handleSubmitUser = e => {
     e.preventDefault();
-    const user = {
-      name: userName,
-      email: userEmail,
-      password: userPassword,
-    };
-
-    dispatch(register(user));
+    dispatch(authOperations.register({name, email, password}));
     reset();
   };
   const reset = () => {
-    setUserName('');
-    setUserEmail('');
-    setUserPassword('');
+    setName('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -38,7 +32,7 @@ export const RegisterPage = () => {
         <input
           type="text"
           name="userName"
-          value={userName}
+          value={name}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           required
           onChange={handleChangeName}
@@ -48,7 +42,7 @@ export const RegisterPage = () => {
         <input
           type="mail"
           name="userEmail"
-          value={userEmail}
+          value={email}
           required
           onChange={handleChangeEmail}
           className={styles.input}
@@ -57,7 +51,7 @@ export const RegisterPage = () => {
         <input
           type="text"
           name="userPassword"
-          value={userPassword}
+          value={password}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           required
           onChange={handleChangePassword}

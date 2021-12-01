@@ -3,7 +3,7 @@ import styles from './navigation.module.css';
 
 export const AuthNavigation = () => {
   return (
-    <nav className={styles.navigation}>
+    <div className={styles.navigation}>
       <ul className={styles.list}>
         <li className={styles.listItem}>
           <NavLink to="/login" className={styles.link}>
@@ -16,6 +16,6 @@ export const AuthNavigation = () => {
           </NavLink>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 };
