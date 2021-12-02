@@ -12,9 +12,7 @@ export const LoginPage = () => {
     
   const handleFormSubmit = e => {
     e.preventDefault();
-      const user = { email, password };
-      console.log(user);
-    dispatch(loginThunk(user));
+    dispatch(loginThunk({ email, password }));
     reset();
   };
   const reset = () => {

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+
 const BASE_URL = 'https://connections-api.herokuapp.com';
 const userLogin = '/users/login';
 const userRegister = '/users/signup';
@@ -20,7 +21,7 @@ export const registerThunk = createAsyncThunk(
       const data = await response.json();
       return data;
     } catch (error) {
-      rejectWithValue({ error: error.message });
+      rejectWithValue(error.message);
     }
   },
 );
@@ -39,7 +40,7 @@ export const loginThunk = createAsyncThunk(
       const data = await response.json();
       return data;
     } catch (error) {
-      rejectWithValue({ error: error.message });
+      rejectWithValue(error.message);
     }
   },
 );
@@ -47,18 +48,23 @@ export const currentThunk = createAsyncThunk(
   'users/current',
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
-    if (!state.auth.token) return;
-    try {
-      const response = await fetch(BASE_URL + userCurrent, {
+    if (!state.auth.token) { return } else {
+      try {
+        const response = await fetch(BASE_URL + userCurrent, {
+          method: "GET",
           headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${state.auth.token}`,
         },
       });
+        console.log(response);
       const data = await response.json();
       return data;
     } catch (error) {
-      rejectWithValue({ error: error.message });
+      rejectWithValue(error.message);
     }
+    }
+    
   },
 );
 
@@ -66,7 +72,7 @@ export const logoutThunk = createAsyncThunk(
   '/users/logout',
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
-    if (!state.auth.token) return;
+       if (!state.auth.token) return;
     try {
       const response = await fetch(BASE_URL + userLogout, {
         method: 'POST',

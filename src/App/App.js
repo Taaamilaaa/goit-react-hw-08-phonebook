@@ -10,13 +10,15 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { PublicRoute } from 'routes/PublicRoute';
 import { HomePage } from 'pages/HomePage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { currentThunk } from 'redux_/auth/thunks';
-
-const isAuth = false;
+import { useFetchContactsQuery } from 'redux_/contacts/contactsSlice';
 
 const App = () => {
+  const isAuth = useSelector(state => state.auth.isAuth);
+  
+ 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const App = () => {
   return (
     <div className="container">
       <header className="header">
-        <Header />  
+        <Header isAuth={ isAuth}/>
         
       </header>
       <main>

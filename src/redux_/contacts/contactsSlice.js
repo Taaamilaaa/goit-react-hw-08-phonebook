@@ -1,30 +1,47 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const contactsAPI = createApi({
-  reducerPath: "contactsAPI",
+const BASE_URL = 'https://connections-api.herokuapp.com';
+const contacts = '/contacts';
+
+export const contactsApiSlice = createApi({
+  reducerPath: 'contacts',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://6197981b5953f10017d23e57.mockapi.io",
+    baseUrl: BASE_URL,
   }),
-  tagTypes: ["Contact"],
-  endpoints: (builder) => ({
+  tagTypes: ['Contacts'],
+  endpoints: builder => ({
     fetchContacts: builder.query({
-      query: () => `/contacts`,
-      providesTags: ["Contact"],
+      query: () => contacts,
+      providesTags: ["Contacts"],
+      // providesTags: (result, err, arg) => {
+      //   return [
+      //     ...result.map(({ id }) => {
+      //       return {
+      //         type: 'Contacts',
+      //         id,
+      //       };
+      //     }),
+      //   ];
+      // },
     }),
     addContact: builder.mutation({
-      query: (newContact) => ({
+      query: newContact => ({
         url: `/contacts`,
-        method: "POST",
+        method: 'POST',
+        // headers: {
+        // Authorization: `Bearer ${state.auth.token}`,
+        // 'Content-Type': 'application/json'},
         body: newContact,
       }),
-      invalidatesTags: ["Contact"],
+      invalidatesTags: ['Contacts'],
     }),
     deleteContact: builder.mutation({
-      query: (contactId) => ({
+      query: contactId => ({
         url: `/contacts/${contactId}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
-      invalidatesTags: ["Contact"],
+      invalidatesTags: ['Contacts'],
+      
     }),
   }),
 });
@@ -33,4 +50,4 @@ export const {
   useFetchContactsQuery,
   useDeleteContactMutation,
   useAddContactMutation,
-} = contactsAPI;
+} = contactsApiSlice;

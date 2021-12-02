@@ -15,7 +15,7 @@ export const ContactsPage = () => {
   const onFilterChange = value => {
     setFilter(value);
   };
-  console.log(contacts);
+ 
     return ( <Container title="Phonebook">
           <Container>
             <Form />

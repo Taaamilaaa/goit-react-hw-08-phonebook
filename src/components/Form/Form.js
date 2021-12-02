@@ -17,6 +17,7 @@ const Form = () => {
 
   const handleChangeName = e => setName(e.target.value);
   const handleChangeNumber = e => setPhone(e.target.value);
+  
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -26,7 +27,8 @@ const Form = () => {
       phone: phone,
     };
 
-    const renderedNames = contacts.find(
+    if (contacts) {
+      const renderedNames = contacts.find(
       ({ name }) => name.toLowerCase() === newContact.name.toLowerCase(),
     );
     if (renderedNames) {
@@ -35,10 +37,25 @@ const Form = () => {
       setPhone('');
       return;
     }
-    addContact(newContact);
+    }else{addContact(newContact);
     notifySuccess(`New contact ${newContact.name} is created`);
     setName('');
-    setPhone('');
+    setPhone('');}
+// //already add
+//     const renderedNames = contacts.find(
+//       ({ name }) => name.toLowerCase() === newContact.name.toLowerCase(),
+//     );
+//     if (renderedNames) {
+//       notifyWarning(`${newContact.name} is already on contacts`);
+//       setName('');
+//       setPhone('');
+//       return;
+//     }
+//     /// add
+//     addContact(newContact);
+//     notifySuccess(`New contact ${newContact.name} is created`);
+//     setName('');
+//     setPhone('');
   };
 
   return (

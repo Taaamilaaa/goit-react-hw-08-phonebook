@@ -67,6 +67,7 @@ const authSlice = createSlice({
       };
     },
     [currentThunk.fulfilled](state, action) {
+      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
@@ -107,4 +108,6 @@ const authSlice = createSlice({
   },
 });
 
+
 export default authSlice.reducer;
+
