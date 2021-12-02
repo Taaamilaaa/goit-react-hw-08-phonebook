@@ -2,14 +2,15 @@ import Form from 'components/Form/Form';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
 import { Container } from 'components/Container/Container';
-import { useFetchContactsQuery } from 'redux_/contacts/contactsSlice';
 import { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
 import Loader from 'react-loader-spinner';
+import { useSelector } from 'react-redux';
 
 
 export const ContactsPage = () => {
-    const { data: contacts, isFetching } = useFetchContactsQuery();
+  const contacts = useSelector(state => state.contacts.contacts);
+  console.log(contacts);
   const [filter, setFilter] = useState('');
 
   const onFilterChange = value => {
@@ -21,13 +22,13 @@ export const ContactsPage = () => {
             <Form />
           </Container>
 
-          {contacts && (
+          {contacts.length > 0 && (
             <Container title="Contacts">
               <Filter onFilterChange={onFilterChange} />
               <ContactList filter={filter} />
             </Container>
           )}
-          {isFetching && (
+          {/* {isFetching && (
             <Loader
               type="Watch"
               className="loader"
@@ -35,7 +36,7 @@ export const ContactsPage = () => {
               height={200}
               width={200}
             />
-          )}
+          )} */}
 
           <Toaster />
         </Container>

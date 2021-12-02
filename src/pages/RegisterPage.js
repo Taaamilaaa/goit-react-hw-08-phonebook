@@ -17,8 +17,7 @@ export const RegisterPage = () => {
 
   const handleSubmitUser = e => {
     e.preventDefault();
-    const user = { name, email, password };
-    dispatch(registerThunk(user));
+    dispatch(registerThunk({ name, email, password }));
     reset();
   };
   const reset = () => {

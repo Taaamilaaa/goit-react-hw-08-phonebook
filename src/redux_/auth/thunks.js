@@ -48,7 +48,8 @@ export const currentThunk = createAsyncThunk(
   'users/current',
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
-    if (!state.auth.token) { return } else {
+    console.log(state.auth.token);
+    if (state.auth.token === '') { return } else {
       try {
         const response = await fetch(BASE_URL + userCurrent, {
           method: "GET",

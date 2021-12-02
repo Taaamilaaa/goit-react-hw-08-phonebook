@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { useDispatch } from 'react-redux';
 import styles from './form.module.css';
 import { notifySuccess, notifyWarning } from 'toaster/toaster';
-
+import {addContactThunk} from "redux_/contacts/contacts-thunks"
 import {
   useFetchContactsQuery,
   useAddContactMutation,
@@ -10,21 +10,21 @@ import {
 
 const Form = () => {
   const { data: contacts } = useFetchContactsQuery();
-  const [addContact, { isLoading }] = useAddContactMutation();
-
+  // const [addContact, { isLoading }] = useAddContactMutation();
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleChangeName = e => setName(e.target.value);
-  const handleChangeNumber = e => setPhone(e.target.value);
+  const handleChangeNumber = e => setNumber(e.target.value);
   
   const handleSubmit = e => {
     e.preventDefault();
 
     const newContact = {
-      id: uuid(),
-      name: name,
-      phone: phone,
+     
+      "name": name,
+      "number":number,
     };
 
     if (contacts) {
@@ -34,13 +34,14 @@ const Form = () => {
     if (renderedNames) {
       notifyWarning(`${newContact.name} is already on contacts`);
       setName('');
-      setPhone('');
+      setNumber('');
       return;
     }
-    }else{addContact(newContact);
+    } else {
+    dispatch(addContactThunk(newContact));
     notifySuccess(`New contact ${newContact.name} is created`);
     setName('');
-    setPhone('');}
+    setNumber('');}
 // //already add
 //     const renderedNames = contacts.find(
 //       ({ name }) => name.toLowerCase() === newContact.name.toLowerCase(),
@@ -73,14 +74,14 @@ const Form = () => {
       <input
         className={styles.input}
         type="tel"
-        value={phone}
+        value={number}
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         required
         onChange={handleChangeNumber}
       />
-      <button className={styles.submitBtn} disabled={isLoading} type="submit">
-        {isLoading && 'Create...'}
-        {!isLoading && ' Add contact'}
+      <button className={styles.submitBtn}  type="submit">
+        {/* {isLoading && 'Create...'}
+        {!isLoading && ' Add contact'} */}
       </button>
     </form>
   );

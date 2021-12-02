@@ -1,12 +1,13 @@
 import ContactItem from '../ContactItem/ContactItem';
 import styles from './contactList.module.css';
 import PropTypes from 'prop-types';
-import { useFetchContactsQuery } from 'redux_/contacts/contactsSlice';
+
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
+import { useSelector } from 'react-redux';
 
 const ContactList = ({ filter }) => {
-  const { data: contacts } = useFetchContactsQuery();
+  const contacts = useSelector(state => state.contacts.contacts);
 
   const getVisibleContacts = (contactsArr, filter) => {
     if (contactsArr) {

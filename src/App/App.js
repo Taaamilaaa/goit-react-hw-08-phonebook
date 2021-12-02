@@ -13,17 +13,17 @@ import { HomePage } from 'pages/HomePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { currentThunk } from 'redux_/auth/thunks';
-import { useFetchContactsQuery } from 'redux_/contacts/contactsSlice';
 
 const App = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
-  
- 
+  const currentUser = useSelector(state => state.auth.token); 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (currentUser === '') { return };
     dispatch(currentThunk());
-  },[dispatch]);
+    // eslint-disable-next-line
+  },[dispatch],);
   return (
     <div className="container">
       <header className="header">

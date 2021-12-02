@@ -13,7 +13,7 @@ export const addContactThunk = createAsyncThunk(
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-             Authorization: `Bearer ${state.auth.token}`,
+             Authorization : `Bearer ${state.auth.token}`,
         },
         body: JSON.stringify(newContact),
       });

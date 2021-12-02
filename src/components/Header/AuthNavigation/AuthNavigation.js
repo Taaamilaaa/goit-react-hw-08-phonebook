@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './navigation.module.css';
 
 export const AuthNavigation = () => {
+  
   return (
     <div className={styles.navigation}>
       <ul className={styles.list}>
