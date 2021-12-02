@@ -10,11 +10,18 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { PublicRoute } from 'routes/PublicRoute';
 import { HomePage } from 'pages/HomePage';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { currentThunk } from 'redux_/auth/thunks';
 
-
+const isAuth = false;
 
 const App = () => {
-  const isAuth = false;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(currentThunk());
+  },[dispatch]);
   return (
     <div className="container">
       <header className="header">

@@ -7,8 +7,10 @@ import { Navigation } from './Navigation/Navigation';
 export const Header = ({ isAuth }) => {
   return (
     <>
-     <Navigation/>
-      {isAuth ? <UserMenu /> : <AuthNavigation />}
+      <Navigation />
+      <UserMenu />
+      <AuthNavigation />
+      {/* {isAuth ? <UserMenu /> : <AuthNavigation />} */}
     </>
   );
 };

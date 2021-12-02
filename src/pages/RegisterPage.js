@@ -1,6 +1,7 @@
 import styles from './registerPage.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { registerThunk } from 'redux_/auth/thunks';
 
 
 
@@ -16,7 +17,9 @@ export const RegisterPage = () => {
 
   const handleSubmitUser = e => {
     e.preventDefault();
-    
+    const user = { name, email, password };
+    dispatch(registerThunk(user));
+    reset();
   };
   const reset = () => {
     setName('');
@@ -27,7 +30,7 @@ export const RegisterPage = () => {
   return (
     <>
       <form onSubmit={handleSubmitUser} className={styles.form}>
-        <label className={styles.label}>Enter your name</label>
+        <label className={styles.label}>Please, register:</label>
         <input
           type="text"
           name="userName"
@@ -36,8 +39,9 @@ export const RegisterPage = () => {
           required
           onChange={handleChangeName}
           className={styles.input}
+          placeholder = "name"
         />
-        <label className={styles.label}>Enter your email</label>
+        
         <input
           type="mail"
           name="userEmail"
@@ -45,16 +49,17 @@ export const RegisterPage = () => {
           required
           onChange={handleChangeEmail}
           className={styles.input}
+          placeholder = "email"
         />
-        <label className={styles.label}>Enter your password</label>
+        
         <input
           type="text"
           name="userPassword"
-          value={password}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          value={password}         
           required
           onChange={handleChangePassword}
           className={styles.input}
+          placeholder = "password"
         />
         <button type="submit" className={styles.submitBtn}>
           Register
