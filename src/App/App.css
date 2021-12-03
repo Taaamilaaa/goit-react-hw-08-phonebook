@@ -1,8 +1,4 @@
 .container {
-  /* height: 100vh; */
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: rgba(155, 152, 152, 0.644);
   padding-bottom: 50px;
   box-sizing: border-box;
 }
@@ -15,8 +11,12 @@
   transform: translate(-50%, -50%);
 }
 .header {
-  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
   padding-top: 25px;
-  border-bottom: 1px solid rgb(77, 74, 74);
+
+  border-bottom: 1px solid rgb(131, 95, 95);
   display: flex;
+  background-color: rgba(61, 16, 16, 0.411);
 }

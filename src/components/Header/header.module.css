@@ -6,7 +6,6 @@
   list-style: none;
   color: inherit;
   display: flex;
-  /* justify-content: end; */
 }
 .headerItem {
   font-style: normal;
@@ -17,4 +16,67 @@
   color: rgba(42, 36, 36, 0.87);
   text-decoration: none;
   margin-right: 25px;
+}
+
+.button {
+  margin-left: auto;
+  width: 100px;
+  height: 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 15px;
+  font-weight: bold;
+  align-items: center;
+  border: none;
+  color: rgba(47, 47, 47, 0.87);
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: rgba(44, 42, 42, 0.561);
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.button:hover {
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgba(51, 28, 25, 0.541);
+  color: rgba(129, 5, 5, 0.644);
+  transform: scale(1.1);
+}
+
+.notification {
+  font-style: normal;
+  line-height: 15px;
+  color: rgba(199, 196, 196, 0.829);
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0px;
+  margin-right: 20px;
+}
+.userContainer {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.list {
+  list-style: none;
+  color: inherit;
+  display: flex;
+}
+.link {
+  font-style: normal;
+  line-height: 15px;
+  color: rgba(24, 23, 23, 0.829);
+  font-size: 30px;
+  font-weight: bold;
+  color: rgba(42, 36, 36, 0.87);
+  text-decoration: none;
+  margin-left: 25px;
+}
+.notification {
+  font-style: normal;
+  line-height: 15px;
+  color: rgba(24, 23, 23, 0.829);
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0px;
+  margin-right: 20px;
 }

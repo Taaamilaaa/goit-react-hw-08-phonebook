@@ -1,10 +1,9 @@
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-export const PublicRoute = ({ isAuth, component: Component}) => {
-  return (
-    <>
+export const PublicRoute = ({ component: Component }) => {
+  const isAuth = useSelector(state=>state.auth.isAuth)
+  return isAuth ? <Navigate to = "/login" /> : <Component />
     
-      {isAuth ? (<p>переключить на contact</p>) : <Component />}
-    </>
-  );
+  
 };

@@ -1,28 +1,68 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContactThunk } from './contacts-thunks';
+import { addContactThunk, fetchContactsThunk, deleteContactThunk } from './contacts-thunks';
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
-    contacts: [],
+    cont: [],
     error: '',
     isLoading: false,
   },
   extraReducers: {
+     [fetchContactsThunk.pending](state, action) {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+    [fetchContactsThunk.fulfilled](state, {payload}) {
+      return {
+        ...state,
+        isLoading: false,
+        cont: [ ...payload],
+      };
+    },
+    [fetchContactsThunk.rejected](state, action) {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    },
     [addContactThunk.pending](state, action) {
       return {
         ...state,
         isLoading: true,
       };
     },
-    [addContactThunk.fulfilled](state, action) {
+    [addContactThunk.fulfilled](state, {payload}) {
       return {
         ...state,
         isLoading: false,
-        contacts: [...state.contacts, action.payload],
+        cont: [...state.cont, payload],
       };
     },
     [addContactThunk.rejected](state, action) {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    },
+     [deleteContactThunk.pending](state, action) {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+    [deleteContactThunk.fulfilled](state, {payload}) {
+      return {
+        ...state,
+        isLoading: false,
+        cont: [...payload],
+      };
+    },
+    [deleteContactThunk.rejected](state, action) {
       return {
         ...state,
         isLoading: false,

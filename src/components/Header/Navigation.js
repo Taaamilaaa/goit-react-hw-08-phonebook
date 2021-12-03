@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import styles from "./navigation.module.css";
-export const Navigation = ({isAuth}) => {
+import styles from './header.module.css';
+export const Navigation = ({ isAuth }) => {
   return (
     <>
       <div className={styles.header}>
@@ -10,16 +10,15 @@ export const Navigation = ({isAuth}) => {
               Home
             </NavLink>
           </li>
-          {isAuth &&  <li>
+          {isAuth && (
+            <li>
               <NavLink to="/contacts" className={styles.headerItem}>
                 Contacts
               </NavLink>
-            </li>}
-           
-          
+            </li>
+          )}
         </ul>
       </div>
-      
     </>
   );
 };

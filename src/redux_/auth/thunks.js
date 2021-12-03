@@ -47,8 +47,7 @@ export const loginThunk = createAsyncThunk(
 export const currentThunk = createAsyncThunk(
   'users/current',
   async (_, { rejectWithValue, getState }) => {
-    const state = getState();
-    console.log(state.auth.token);
+    const state = getState();   
     if (state.auth.token === '') { return } else {
       try {
         const response = await fetch(BASE_URL + userCurrent, {
@@ -58,7 +57,7 @@ export const currentThunk = createAsyncThunk(
           Authorization: `Bearer ${state.auth.token}`,
         },
       });
-        console.log(response);
+      
       const data = await response.json();
       return data;
     } catch (error) {

@@ -1,64 +1,34 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './form.module.css';
 import { notifySuccess, notifyWarning } from 'toaster/toaster';
-import {addContactThunk} from "redux_/contacts/contacts-thunks"
-import {
-  useFetchContactsQuery,
-  useAddContactMutation,
-} from 'redux_/contacts/contactsSlice';
+import { addContactThunk } from 'redux_/contacts/contacts-thunks';
 
 const Form = () => {
-  const { data: contacts } = useFetchContactsQuery();
-  // const [addContact, { isLoading }] = useAddContactMutation();
-  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(state => state.contacts.cont);
+  const isLoading = useSelector(state => state.contacts.isLoading);
+  const dispatch = useDispatch();
 
   const handleChangeName = e => setName(e.target.value);
   const handleChangeNumber = e => setNumber(e.target.value);
-  
   const handleSubmit = e => {
     e.preventDefault();
-
-    const newContact = {
-     
-      "name": name,
-      "number":number,
-    };
-
-    if (contacts) {
-      const renderedNames = contacts.find(
-      ({ name }) => name.toLowerCase() === newContact.name.toLowerCase(),
+    const renderedName = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
     );
-    if (renderedNames) {
-      notifyWarning(`${newContact.name} is already on contacts`);
+    if (renderedName) {
+      notifyWarning(`${name} is already on contacts`);
       setName('');
       setNumber('');
       return;
     }
-    } else {
-    dispatch(addContactThunk(newContact));
-    notifySuccess(`New contact ${newContact.name} is created`);
+    dispatch(addContactThunk({ name: name, number: number }));
+    notifySuccess(`New contact ${name} is created`);
     setName('');
-    setNumber('');}
-// //already add
-//     const renderedNames = contacts.find(
-//       ({ name }) => name.toLowerCase() === newContact.name.toLowerCase(),
-//     );
-//     if (renderedNames) {
-//       notifyWarning(`${newContact.name} is already on contacts`);
-//       setName('');
-//       setPhone('');
-//       return;
-//     }
-//     /// add
-//     addContact(newContact);
-//     notifySuccess(`New contact ${newContact.name} is created`);
-//     setName('');
-//     setPhone('');
+    setNumber('');
   };
-
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <label className={styles.label}>Name:</label>
@@ -79,9 +49,9 @@ const Form = () => {
         required
         onChange={handleChangeNumber}
       />
-      <button className={styles.submitBtn}  type="submit">
-        {/* {isLoading && 'Create...'}
-        {!isLoading && ' Add contact'} */}
+      <button className={styles.submitBtn} type="submit">
+        {isLoading && 'Create...'}
+        {!isLoading && ' Add contact'}
       </button>
     </form>
   );

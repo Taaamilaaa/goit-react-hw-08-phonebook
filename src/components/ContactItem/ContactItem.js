@@ -2,14 +2,16 @@ import React from 'react';
 import styles from './contactItem.module.css';
 import PropTypes from 'prop-types';
 import { notifyDel } from 'toaster/toaster';
-import { useDeleteContactMutation } from 'redux_/contacts/contactsSlice';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import Loader from 'react-loader-spinner';
+
+import { deleteContactThunk } from 'redux_/contacts/contacts-thunks';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ContactItem = ({ id, name, phone }) => {
-  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.contacts.isLoading);
   const del = () => {
-    deleteContact(id);
+    dispatch(deleteContactThunk(id));
     notifyDel(`Contact with the name ${name} deleted!!!`);
   };
   return (
@@ -18,24 +20,20 @@ const ContactItem = ({ id, name, phone }) => {
         <span className={styles.name}>{name}:</span>
         <span className={styles.number}>{phone}</span>
       </div>
-
       <button
         className={styles.btn}
-        disabled={isDeleting}
+        disabled={isLoading}
         onClick={() => del(id)}
-      >
-        {isDeleting ? (
-          <Loader type="Puff" color="red" height={20} width={20} />
-        ) : (
-          '❌'
-        )}
+      >       
+          ❌        
       </button>
     </li>
   );
 };
 
 ContactItem.propType = {
-  contacts: PropTypes.obj,
-  clickOnBtn: PropTypes.func,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  number: PropTypes.number,
 };
 export default ContactItem;

@@ -1,4 +1,4 @@
-import styles from './userMenu.module.css';
+import styles from './header.module.css';
 import { useDispatch } from 'react-redux';
 import { logoutThunk } from 'redux_/auth/thunks';
 import { useSelector } from 'react-redux';

@@ -68,8 +68,7 @@ const authSlice = createSlice({
       };
     },
     [currentThunk.fulfilled](state, action) {
-      console.log(action.payload);
-      return {
+       return {
         ...state,
         isLoading: false,
         user: action.payload,
