@@ -54,24 +54,7 @@ const App = () => {
             <Route path="/contacts" element={<ContactsPage />} />
           </Route>
         </Routes>
-        {/* <Routes>
-          <Route
-            path="/"
-            element={<PrivateRoute component={HomePage} isAuth={isAuth} />}
-          />
-          <Route
-            path="/contacts"
-            element={<PrivateRoute component={ContactsPage} isAuth={isAuth} />}
-          />
-          <Route
-            path="/login"
-            element={<PublicRoute component={LoginPage} isAuth={isAuth}  />}
-          />
-          <Route
-            path="/register"
-            element={<PublicRoute component={RegisterPage} isAuth={isAuth} />}
-          />
-        </Routes> */}
+       
         {isLoading && (
           <Loader
             className="loader"
