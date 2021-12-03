@@ -35,6 +35,26 @@ const App = () => {
       </header>
       <main>
         <Routes>
+          <Route path="/" element={<PublicRoute />}>
+            <Route path="/" element={<HomePage />} />
+          </Route>
+          <Route path="/register" element={<PublicRoute restricted />}>
+            <Route path="/register" element={<RegisterPage />} />
+          </Route>
+          <Route
+            path="/login"
+            element={<PublicRoute restricted redirectTo="/contacts" />}
+          >
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
+          <Route
+            path="/contacts"
+            element={<PrivateRoute redirectTo="/" />}
+          >
+            <Route path="/contacts" element={<ContactsPage />} />
+          </Route>
+        </Routes>
+        {/* <Routes>
           <Route
             path="/"
             element={<PrivateRoute component={HomePage} isAuth={isAuth} />}
@@ -45,13 +65,13 @@ const App = () => {
           />
           <Route
             path="/login"
-            element={<PublicRoute component={LoginPage} isAuth={isAuth} />}
+            element={<PublicRoute component={LoginPage} isAuth={isAuth}  />}
           />
           <Route
             path="/register"
             element={<PublicRoute component={RegisterPage} isAuth={isAuth} />}
           />
-        </Routes>
+        </Routes> */}
         {isLoading && (
           <Loader
             className="loader"

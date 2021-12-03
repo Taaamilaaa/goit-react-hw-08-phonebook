@@ -1,4 +1,4 @@
-import styles from './registerPage.module.css';
+import styles from './pages.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerThunk } from 'redux_/auth/thunks';

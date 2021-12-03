@@ -20,3 +20,6 @@ li {
   margin: 0;
   padding: 0;
 }
+.active {
+  color: rgba(129, 5, 5, 0.644);
+}

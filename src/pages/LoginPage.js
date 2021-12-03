@@ -1,3 +1,4 @@
+import styles from './pages.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux_/auth/thunks';
@@ -21,22 +22,24 @@ export const LoginPage = () => {
   };
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
-        <label>Email:</label>
+      <form onSubmit={handleFormSubmit} className={styles.form}>
+        <label className={styles.label}>Enter your data:</label>
         <input
           type="mail"
           placeholder="email"
           required
           onChange={handleEmailChange}
+          className={styles.input}
         />
-        <label>Password:</label>
+        <label></label>
         <input
           type="text"
           placeholder="password"
           required
           onChange={handlePasswordChange}
+          className={styles.input}
         />
-        <button type="submit">Enter</button>
+        <button type="submit" className={styles.submitBtn}>Enter</button>
       </form>
     </>
   );

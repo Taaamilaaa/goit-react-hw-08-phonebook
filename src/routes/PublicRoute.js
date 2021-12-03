@@ -1,9 +1,10 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export const PublicRoute = ({ component: Component }) => {
-  const isAuth = useSelector(state=>state.auth.isAuth)
-  return isAuth ? <Navigate to = "/login" /> : <Component />
+export const PublicRoute = ({ restricted = false, redirectTo = '/' }) => {
+  const isAuth = useSelector(state => state.auth.isAuth)
+  const redirect = isAuth && restricted; 
+  return redirect ? <Navigate to={redirectTo} />  : <Outlet />
     
   
 };

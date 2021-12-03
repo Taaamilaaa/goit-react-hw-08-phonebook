@@ -6,7 +6,7 @@ export const AuthNavigation = () => {
     <div className={styles.navigation}>
       <ul className={styles.list}>
         <li className={styles.listItem}>
-          <NavLink to="/login" className={styles.link}>
+          <NavLink to="/login"  className={styles.link}>
             Login
           </NavLink>
         </li>
