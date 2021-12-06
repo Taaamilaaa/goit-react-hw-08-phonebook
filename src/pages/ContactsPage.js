@@ -4,7 +4,6 @@ import Filter from 'components/Filter/Filter';
 import { Container } from 'components/Container/Container';
 import { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
-import Loader from 'react-loader-spinner';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContactsThunk } from 'redux_/contacts/contacts-thunks';
