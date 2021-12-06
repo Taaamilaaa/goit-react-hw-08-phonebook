@@ -17,8 +17,8 @@ export const registerThunk = createAsyncThunk(
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(user),
-      });   
-      const data = await response.json();      
+      });
+      const data = await response.json();
       return data;
     } catch (error) {
       rejectWithValue(error.message);
@@ -36,7 +36,7 @@ export const loginThunk = createAsyncThunk(
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(user),
-      });      
+      });
       const data = await response.json();
       return data;
     } catch (error) {
