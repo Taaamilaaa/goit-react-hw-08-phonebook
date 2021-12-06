@@ -12,6 +12,7 @@ const contactsSlice = createSlice({
      [fetchContactsThunk.pending](state, action) {
       return {
         ...state,
+        error: '',
         isLoading: true,
       };
     },
@@ -32,6 +33,7 @@ const contactsSlice = createSlice({
     [addContactThunk.pending](state, action) {
       return {
         ...state,
+        error: '',
         isLoading: true,
       };
     },
@@ -52,6 +54,7 @@ const contactsSlice = createSlice({
      [deleteContactThunk.pending](state, action) {
       return {
         ...state,
+        error: '',
         isLoading: true,
       };
     },

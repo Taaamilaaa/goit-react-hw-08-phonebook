@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux_/auth/thunks';
 
-export const LoginPage = () => {
+ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -44,3 +44,4 @@ export const LoginPage = () => {
     </>
   );
 };
+export default LoginPage;

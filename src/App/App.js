@@ -1,17 +1,20 @@
 import './App.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { Routes, Route } from 'react-router';
-import { Header } from 'components/Header/Header';
-import { ContactsPage } from 'pages/ContactsPage';
-import { LoginPage } from 'pages/LoginPage';
-import { RegisterPage } from 'pages/RegisterPage';
-import { PrivateRoute } from 'routes/PrivateRoute';
-import { PublicRoute } from 'routes/PublicRoute';
-import { HomePage } from 'pages/HomePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { currentThunk } from 'redux_/auth/thunks';
+import { lazy, Suspense } from 'react';
 import Loader from 'react-loader-spinner';
+import { PrivateRoute } from 'routes/PrivateRoute'; 
+import { PublicRoute } from 'routes/PublicRoute';
+import { Header } from 'components/Header/Header';
+import { currentThunk } from 'redux_/auth/thunks';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+
 
 const App = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
@@ -30,31 +33,35 @@ const App = () => {
   }, [dispatch]);
   return (
     <div className="container">
-      <header className="header">
+      <Suspense fallback = {<Loader
+            className="loader"
+            type="Puff"
+            color="rgba(61, 16, 16, 0.411)"
+            height={150}
+            width={150}
+          />}>
+         <header className="header">
         <Header isAuth={isAuth} />
       </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<PublicRoute />}>
-            <Route path="/" element={<HomePage />} />
-          </Route>
-          <Route path="/register" element={<PublicRoute restricted />}>
-            <Route path="/register" element={<RegisterPage />} />
-          </Route>
+        <main>
+           <Routes>
           <Route
-            path="/login"
-            element={<PublicRoute restricted redirectTo="/contacts" />}
-          >
-            <Route path="/login" element={<LoginPage />} />
-          </Route>
+            path="/"
+            element={<PrivateRoute component={HomePage} isAuth={isAuth} />}
+          />
           <Route
             path="/contacts"
-            element={<PrivateRoute redirectTo="/" />}
-          >
-            <Route path="/contacts" element={<ContactsPage />} />
-          </Route>
-        </Routes>
-       
+            element={<PrivateRoute component={ContactsPage} isAuth={isAuth} />}
+          />
+          <Route
+            path="/login"
+            element={<PublicRoute component={LoginPage} isAuth={isAuth}  />}
+          />
+          <Route
+            path="/register"
+            element={<PublicRoute component={RegisterPage} isAuth={isAuth} />}
+          />
+        </Routes>    
         {isLoading && (
           <Loader
             className="loader"
@@ -65,6 +72,7 @@ const App = () => {
           />
         )}
       </main>
+      </Suspense>     
     </div>
   );
 };

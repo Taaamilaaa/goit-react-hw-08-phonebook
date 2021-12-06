@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContactsThunk } from 'redux_/contacts/contacts-thunks';
 
-export const ContactsPage = () => {
+ const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.cont);
   const [filter, setFilter] = useState('');
@@ -33,3 +33,4 @@ export const ContactsPage = () => {
     </Container>
   );
 };
+export default ContactsPage;

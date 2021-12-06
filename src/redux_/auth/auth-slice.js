@@ -19,6 +19,7 @@ const authSlice = createSlice({
     [registerThunk.pending](state, action) {
       return {
         ...state,
+        error: null,
         isLoading: true,
       };
     },
@@ -41,6 +42,7 @@ const authSlice = createSlice({
     [loginThunk.pending](state, action) {
       return {
         ...state,
+        error: null,
         isLoading: true,
       };
     },
@@ -64,6 +66,7 @@ const authSlice = createSlice({
       return {
         ...state,
         isLoading: true,
+        error: null,
         isAuth: false,
       };
     },
@@ -87,6 +90,7 @@ const authSlice = createSlice({
       return {
         ...state,
         isLoading: true,
+        error: null,
       };
     },
     [logoutThunk.fulfilled](state, action) {
@@ -95,7 +99,7 @@ const authSlice = createSlice({
         user: { name: '', email: '' },
         token: '',
         isLoading: false,
-        isAuth: false,
+        isAuth: false,       
       };
     },
     [logoutThunk.rejected](state, action) {
